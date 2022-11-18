@@ -8,7 +8,8 @@ As long as you have an account with sufficient permissions to read from Active D
 Lets step through a few examples below of the most common scenarios to export ad users to csv (and one method that doesn’t involve PowerShell for people who prefer prefer a GUI or just dislike PowerShell).
 
 Consideration: Before you export your accounts, I recommend downloading the FREE Admin Bundle for Active Directory to clean up all your inactive user and computer accounts.
-How to Export Users from Active Directory
+
+## How to Export Users from Active Directory
 
 The first thing you to do is open a PowerShell session either locally on a machine running the AD DS role (like a Domain Controller) or install the Remote Server Admin Tools (RSAT) so that the Active Directory module is available.
 
@@ -21,14 +22,18 @@ Another way to see the attributes you have available to export is to run the fol
 ```get-aduser rsanchez -properties *```
 
 Now that you know what you’re after, lets look at some examples!
-Export All AD Users by Name to CSV
+
+
+## Export All AD Users by Name to CSV
 
 ```Get-ADUser -Filter * -Properties * | Select-Object name | export-csv -path c:\temp\userexport.csv```
 
 This command will export all of the user accounts in your domain to a CSV by their name. What this means is that the CSV file will contain a single column list of every account’s First, Middle, and Last name.
 
 The ‘export-csv -path c:\temp\userexport.csv’ after the pipe (the | character) is what exports the data to CSV. If you drop that section of the command it’ll simply print the results to your PowerShell window.
-Export All AD Users by Name and LastLogonDate
+
+
+## Export All AD Users by Name and LastLogonDate
 
 If you want a list of every account’s name and the last date the account authenticated with the domain then you can run the command:
 
@@ -37,15 +42,19 @@ If you want a list of every account’s name and the last date the account authe
 This will export all accounts in your domain to a CSV sheet with the First, Middle, and Last name in the first column and LastLogonDate in the second column.
 
 If you want to export more attributes you just need to add them the Select-Object section of the command separated by a comma. For example:
-Export All AD Users by Multiple Attributes
+
+
+## Export All AD Users by Multiple Attributes
 
 ```Get-ADUser -Filter * -Properties * | Select-Object name, lastlogondate, department | export-csv -path c:\temp\userexport.csv```
 
-Export All AD Users Email Addresses
+
+## Export All AD Users Email Addresses
 
 ```Get-ADUser -Filter * -Properties * | Select-Object mail | export-csv -path c:\temp\userexport.csv```
 
-Export All AD Users from Specific OU (Organizational Unit)
+
+## Export All AD Users from Specific OU (Organizational Unit)
 
 Before you run this command you need to find the distinguishedName attribute of your OU. You find this by opening the properties of the OU in Active Directory Admin Center and going to Extensions -> Attribute Editor.
 
