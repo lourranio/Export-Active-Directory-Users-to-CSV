@@ -1,6 +1,9 @@
 # Export-Active-Directory-Users-to-CSV
  Powershell: Export Active Directory Users to CSV
  
+ Fonte / Creditos / Autor : https://networkproguide.com/powershell-export-active-directory-users-to-csv/
+ ```https://networkproguide.com/powershell-export-active-directory-users-to-csv/```
+ 
 Exporting Users from Active Directory is a really simple task, even if you’re not very familiar with PowerShell.
 
 As long as you have an account with sufficient permissions to read from Active Directory you’re good to go.
